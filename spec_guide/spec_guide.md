@@ -37,13 +37,14 @@ High Level Spec Setup
   * start writing test at highest level
   * assert on behavior that user can see
   
-####Arrange-Act-Assert pattern####
-  * Arrange: setup all nessary preconditions and inputs
-  * Act: on the object or method being tested
-  * Assert: the expected results have occurred.
-
 ####Naming####
 Print out all the specs, is it readable and clear of what the main parts of the feature are doing and what is being tested.
+Remove weak words
+
+Bad:
+it "should add the student to the class"
+Better:
+it "adds the student to the class"
   
 ####File Stucture####
   - It is nice to have files under 100 lines but the file size is lowest on priority over code being well tested
@@ -54,6 +55,28 @@ Print out all the specs, is it readable and clear of what the main parts of the 
 
 ####Hound Issues####
 We are more flexible with hound issues on Spec tests with the highest priority being clear of what is being tested. If a spec name is longer than 80 characters, see if there is a quick way to shorten the name without losing the meaning, if not don't let this hold you back and move on.  
+
+Spec Specifications 
+--------
+*We now know what to test, where to test it, and why it's important but let's dig into the details and see how!*
+
+####Arrange-Act-Assert pattern####
+  * Arrange: setup all nessary preconditions and inputs
+  * Act: on the object or method being tested
+  * Assert: the expected results have occurred.
+
+####Describes, Features and Contexts... on my!####
+The purpose of “describe” is to wrap a set of tests against one functionality while “context” is to wrap a set of tests against one functionality under the same state. 
+ * Use Describe for things (top level and methods).
+ * Use context for states.
+ * User Features for tope level of Feature tests
+
+
+####before, let, instance variables####
+ - Avoid instance variables, http://stackoverflow.com/questions/5359558/when-to-use-rspec-let/5359979#5359979 
+ - before eagerly runs code before each test.
+ - let lazily runs code when it is first used which is better then automatically running unneeded logic.  
+ - Make sure the lets aren't to distant so it is still readable easy to track what is going on.
 
 ####Factory Girl####
 https://github.com/thoughtbot/factory_girl
@@ -84,7 +107,6 @@ http://tutorials.jumpstartlab.com/topics/capybara/capybara_with_selenium_and_web
       let, let!, and before
       https://www.relishapp.com/rspec/rspec-core/v/3-3/docs/helper-methods/let-and-let
     Module - support/features/feature_type_helpers.rb
-
 
 
 ####Stubs####
