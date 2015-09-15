@@ -3,7 +3,7 @@ Glassbreakers Spec Guide
 
 Fundamentals 
 --------
-At Glassbreakers we value a well tested app and take pride in our test suite.
+###*At Glassbreakers we value a well tested app and take pride in our test suite.*###
 
 ####Coverage####
 Glassbreakers is a fast moving company that pushes code up frequently as we build out new features. The development team relies on a well tested app to have the confidence to push code to production without causing errors and/or negatively affecting a user's experience.
@@ -32,19 +32,20 @@ These are best practices for going forward. If you are writing new specs or upda
 
 High Level Spec Setup
 --------
+###*These conventions are best practices across all spec types*###
+
 ####Outside in Testing####
   * pattern for writing tests
   * start writing test at highest level
   * assert on behavior that user can see
   
 ####Naming####
-Print out all the specs, is it readable and clear of what the main parts of the feature are doing and what is being tested.
-Remove weak words
+Print out all the specs titles to include with your code review, all names should be readable and clear of what the code covers and what edge cases are being tested.
 
-Bad:
-it "should add the student to the class"
-Better:
-it "adds the student to the class"
+Remove duplicate phrasing and weak words like 'should'. 
+
+it "should add the item to the list" do - BAD
+it "add the item to the list" do - GOOD
   
 ####File Stucture####
   - It is nice to have files under 100 lines but the file size is lowest on priority over code being well tested
@@ -58,7 +59,7 @@ We are more flexible with hound issues on Spec tests with the highest priority b
 
 Spec Specifications 
 --------
-*We now know what to test, where to test it, and why it's important but let's dig into the details and see how!*
+###*We now know what to test, where to test it, and why it's important but let's dig into the details and see how!*###
 
 ####Arrange-Act-Assert pattern####
   * Arrange: setup all nessary preconditions and inputs
@@ -78,7 +79,11 @@ The purpose of “describe” is to wrap a set of tests against one functionalit
  - let lazily runs code when it is first used which is better then automatically running unneeded logic.  
  - Make sure the lets aren't to distant so it is still readable easy to track what is going on.
 
-####Factory Girl####
+####Factory Girl and Fixtures####
+At any time possible, use Factory girl and not fixtures. Factory Girl is reliable and requires little maintance. With Factory Girl, a model updates with your development as you merge in updates to your models.
+
+A case for fixtures would be if you need to pass in a CSV file, or create an object to pass in that is not a Model.  
+http://www.hiringthing.com/2012/08/17/rails-testing-factory-girl.html#sthash.h7s1sDju.dpuf
 https://github.com/thoughtbot/factory_girl
 
 ####JavaScript####
@@ -89,45 +94,37 @@ By default Capybara emulates a headless browser which is fast but does not run J
 http://tutorials.jumpstartlab.com/topics/capybara/capybara_with_selenium_and_webkit.html
 
 ####Shared examples####
-  http://testdrivenwebsites.com/2011/08/17/different-ways-of-code-reuse-in-rspec/
-  https://www.relishapp.com/rspec/rspec-core/docs/example-groups/shared-examples
-  http://modocache.io/shared-examples-in-rspec
-    What are they:
-     they allow us to execute the same group of expectations against several classes
-     it_behaves_like ''
-    similiar to a helper method but includes assertions
-    When to use:
-     2 or less no, 3 yes.
-    Where to put them:
-      If all are called in one file - up top
-      spec/support/examples
+https://www.relishapp.com/rspec/rspec-core/docs/example-groups/shared-examples
+http://testdrivenwebsites.com/2011/08/17/different-ways-of-code-reuse-in-rspec/
+http://modocache.io/shared-examples-in-rspec
+  
+Shared examples allow us to execute the same group of expectations against several classes. Only use if there are more then 2 casese that could call them. If all of the calls to the shared example are in one file, place the shared example up top of that file, otherwise place in spec/support/examples. 
   
 ####Helper Methods####
-    Inside one file or context - up top using
-      let, let!, and before
-      https://www.relishapp.com/rspec/rspec-core/v/3-3/docs/helper-methods/let-and-let
-    Module - support/features/feature_type_helpers.rb
+http://testdrivenwebsites.com/2011/08/17/different-ways-of-code-reuse-in-rspec/
 
+The primary use of helper methods is to hide implementation details by grouping several low-level statements into more meaningful, higher level abstractions (with clear, expressive names). If you have an urge to write a comment explaing what you are doing, this would be a great case to make a helper method with a clear name. 
 
-####Stubs####
+If the helper method is only being accessed in one file, place at the bottom of the file. If they are shared, place in the appropriate spec type subfolder under support. Ex: spec/support/features/feature_name_helpers.rb
+
 
 
 Feature Specs
 ---------
+Head with Feature `"User sends a message" do`
+
+High level tests that walk through entire application. Think of it as an actual user testing out the web interface. Only focus on what the user will see, do not test any logic in the feature tests that should be behind the scenes to the user. 
 
 Controller Specs
 ----------
+Most controller specs should be hit through the feature specs. Use your best judgement if additional controller specs are needed.  
 
-Model/Unit tests
+Model/Unit/Services
 -----
+Head with `Describe "User" do`
+Great talk by Sandi Metz: https://www.youtube.com/watch?v=URSWYvyc42M
 Narrow the focus down until the entire universe is a single object, that object is all the unit test knows about
 -every cell works correctly
--thorough
--stable - don't want them to break when we update code
--fast
--few
--focus on messages
--Query message - return something/change nothing
-  -test the interface, not the implementation (allows for refactoring)
--Command: Returns nothing/change something
--Do not test private methods, they do not allow for refactoring. If you have a complicated private algorithm, this may require testing to get it running but should be segregated and noted that they can be deleted with refactoring. What at 15mins https://www.youtube.com/watch?v=URSWYvyc42M
+-thorough, stable, fast, and few
+-test the interface, not the implementation (allows for refactoring)
+- Do not test private methods, they do not allow for refactoring. If you have a complicated private algorithm, this may require testing to get it running but should be segregated and noted that they can be deleted with refactoring. 
