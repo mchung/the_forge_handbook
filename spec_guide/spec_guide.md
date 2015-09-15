@@ -109,7 +109,7 @@ If the helper method is only being accessed in one file, place at the bottom of 
 
 Spec types
 -------
-####**####
+####*Follow these as general guidelines in choosing what Specs to great. Always start high level (ie feature spec) and work from there.*####
 
 ###Feature Specs###
 Head with Feature `"User sends a message" do`
