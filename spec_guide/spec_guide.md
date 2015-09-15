@@ -74,34 +74,36 @@ The purpose of “describe” is to wrap a set of tests against one functionalit
 
 
 ####before, let, instance variables####
- - Avoid instance variables, http://stackoverflow.com/questions/5359558/when-to-use-rspec-let/5359979#5359979 
+ - Avoid instance variables: [why](http://stackoverflow.com/questions/5359558/when-to-use-rspec-let/5359979#5359979)
  - before eagerly runs code before each test.
  - let lazily runs code when it is first used which is better then automatically running unneeded logic.  
  - Make sure the lets aren't to distant so it is still readable easy to track what is going on.
 
 ####Factory Girl and Fixtures####
+* [Factory Girl Gem] (https://github.com/thoughtbot/factory_girl)
+* [why factories are better than fixtures] (http://www.hiringthing.com/2012/08/17/rails-testing-factory-girl.html#sthash.h7s1sDju.dpuf)
+
 At any time possible, use Factory girl and not fixtures. Factory Girl is reliable and requires little maintance. With Factory Girl, a model updates with your development as you merge in updates to your models.
 
 A case for fixtures would be if you need to pass in a CSV file, or create an object to pass in that is not a Model.  
-http://www.hiringthing.com/2012/08/17/rails-testing-factory-girl.html#sthash.h7s1sDju.dpuf
-https://github.com/thoughtbot/factory_girl
 
 ####JavaScript####
 By default Capybara emulates a headless browser which is fast but does not run JavaScript. If you need to enable JavaScript in a test, include in `js:  true`. 
 -'js: true' can be added to a describe block, context or single spec
 - It does take more time to run a JS enabled spec, only apply it to the smallest block possible. 
 - Ex: `it "tests using javascript" js:  true, do`
-http://tutorials.jumpstartlab.com/topics/capybara/capybara_with_selenium_and_webkit.html
+[Capybara and JS](http://tutorials.jumpstartlab.com/topics/capybara/capybara_with_selenium_and_webkit.html)
 
-####Shared examples####
-https://www.relishapp.com/rspec/rspec-core/docs/example-groups/shared-examples
-http://testdrivenwebsites.com/2011/08/17/different-ways-of-code-reuse-in-rspec/
-http://modocache.io/shared-examples-in-rspec
-  
+####Reusing Code####
+Some test cases can take a lot of setup and be repetitive. These are great cases to reuse code in a test suite. Just remember the balance of saving lines of code and being able to quickly understand what is being test. 
+[reusing code] (http://testdrivenwebsites.com/2011/08/17/different-ways-of-code-reuse-in-rspec/)
+
+#####Shared examples#####
+
+[shared examples](https://www.relishapp.com/rspec/rspec-core/docs/example-groups/shared-examples)
 Shared examples allow us to execute the same group of expectations against several classes. Only use if there are more then 2 casese that could call them. If all of the calls to the shared example are in one file, place the shared example up top of that file, otherwise place in spec/support/examples. 
   
-####Helper Methods####
-http://testdrivenwebsites.com/2011/08/17/different-ways-of-code-reuse-in-rspec/
+#####Helper Methods#####
 
 The primary use of helper methods is to hide implementation details by grouping several low-level statements into more meaningful, higher level abstractions (with clear, expressive names). If you have an urge to write a comment explaing what you are doing, this would be a great case to make a helper method with a clear name. 
 
@@ -125,7 +127,7 @@ Include a complete Mailer Spec for all mailers to ensure emails are being format
 ###Model/Unit/Services###
 -----
 Head with `Describe "User" do`
-Great talk by Sandi Metz: https://www.youtube.com/watch?v=URSWYvyc42M
+[Great talk by Sandi Metz] (https://www.youtube.com/watch?v=URSWYvyc42M)
 Narrow the focus down until the entire universe is a single object, that object is all the unit test knows about
 -every cell works correctly
 -thorough, stable, fast, and few
