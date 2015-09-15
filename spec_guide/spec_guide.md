@@ -3,7 +3,7 @@ Glassbreakers Spec Guide
 
 Fundamentals 
 --------
-###*At Glassbreakers we value a well tested app and take pride in our test suite.*###
+####*At Glassbreakers we value a well tested app and take pride in our test suite.*####
 
 ####Coverage####
 Glassbreakers is a fast moving company that pushes code up frequently as we build out new features. The development team relies on a well tested app to have the confidence to push code to production without causing errors and/or negatively affecting a user's experience.
@@ -59,7 +59,7 @@ We are more flexible with hound issues on Spec tests with the highest priority b
 
 Spec Specifications 
 --------
-###*We now know what to test, where to test it, and why it's important but let's dig into the details and see how!*###
+####*We now know what to test, where to test it, and why it's important but let's dig into the details and see how!*####
 
 ####Arrange-Act-Assert pattern####
   * Arrange: setup all nessary preconditions and inputs
@@ -107,19 +107,22 @@ The primary use of helper methods is to hide implementation details by grouping 
 
 If the helper method is only being accessed in one file, place at the bottom of the file. If they are shared, place in the appropriate spec type subfolder under support. Ex: spec/support/features/feature_name_helpers.rb
 
+Spec types
+-------
+####**####
 
-
-Feature Specs
----------
+###Feature Specs###
 Head with Feature `"User sends a message" do`
 
 High level tests that walk through entire application. Think of it as an actual user testing out the web interface. Only focus on what the user will see, do not test any logic in the feature tests that should be behind the scenes to the user. 
 
-Controller Specs
-----------
+###Controller Specs###
 Most controller specs should be hit through the feature specs. Use your best judgement if additional controller specs are needed.  
 
-Model/Unit/Services
+###Mailer Specs##
+Include a complete Mailer Spec for all mailers to ensure emails are being formatted correctly and have the correct user data. 
+
+###Model/Unit/Services###
 -----
 Head with `Describe "User" do`
 Great talk by Sandi Metz: https://www.youtube.com/watch?v=URSWYvyc42M
