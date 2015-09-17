@@ -36,20 +36,18 @@ Now get back to kicking ass and breaking glass and go write some awesome code!
 
 High Level Spec Setup
 --------
-####*These conventions are best practices across all spec types*####
+####*Use these conventions as best practices across all spec types.*####
 
 ####Outside in Testing####
-  * pattern for writing tests
-  * start writing test at highest level
-  * assert on behavior that user can see
+When writing specs, we prefer to work from the outside and move in. This means to start writing tests at the highest level and assert on behavior that user can see. These specs should then drive what code needs to be implemented in order to give the user the functionality desired and nothing more. 
+
+[Great talk by Sam Phippen on this.] (https://www.youtube.com/watch?v=SOi_1reKn8M)
   
 ####Naming####
 Print out all the specs titles to include with your code review, all names should be readable and clear of what the code covers and what edge cases are being tested.
 
-Remove duplicate phrasing and weak words like 'should'. 
-
-replace `it "should add the item to the list" do`
-with `it "adds the item to the list" do`
+Remove duplicate phrasing and weak words like 'should'. For example, replace `it "should add the item to the list" do`
+with `it "adds the item to the list" do`.
   
 ####File Stucture####
   - It is nice to have files under 100 lines but the file size is lowest on priority over code being well tested
@@ -79,18 +77,16 @@ The purpose of “describe” is to wrap a set of tests against one functionalit
 
 
 ####Before, Let, and Instance variables####
- - Avoid instance variables: [why](http://stackoverflow.com/questions/5359558/when-to-use-rspec-let/5359979#5359979)
+Before, Let and Instance variables are tools to avoid repetitive code. However there are some considerations to take on whether to use them. 
+ - Avoid instance variables in specs: [why](http://stackoverflow.com/questions/5359558/when-to-use-rspec-let/5359979#5359979).
  - Using a `before` block eagerly runs code before each test. Be careful you aren't calling code that doesn't get used for every spec. 
  - Using a `let` block lazily runs code when it is first used. This saves from automatically running unneeded logic.
  - Make sure using a `before` or `let` block is really saving you time. It's great to DRY up code but if it takes a long time to trace back what a spec is doing, it may not be worth it. 
 
 ####Factory Girl and Fixtures####
-* [Factory Girl Gem] (https://github.com/thoughtbot/factory_girl)
-* [Why factories are better than fixtures] (http://www.hiringthing.com/2012/08/17/rails-testing-factory-girl.html#sthash.h7s1sDju.dpuf)
+We use [Factory Girl] (https://github.com/thoughtbot/factory_girl) whenever possible at Glassbreakers. Factory Girl is reliable and requires little maintance. With Factory Girl, a model updates with your development as you merge in updates to your models.
 
-At any time possible, use Factory girl and not fixtures. Factory Girl is reliable and requires little maintance. With Factory Girl, a model updates with your development as you merge in updates to your models.
-
-A case for fixtures would be if you need to pass in a CSV file, or create an object to pass in that is not a Model.  
+Whenever possible we user Factory Girl over fixtures. There are a few cases that'll require fixtures, for example if you need to pass in a CSV file, or create an object to pass in that is not a Model.  [Why factories are better than fixtures] (http://www.hiringthing.com/2012/08/17/rails-testing-factory-girl.html#sthash.h7s1sDju.dpuf).
 
 ####JavaScript####
 By default Capybara emulates a headless browser which is fast but does not run JavaScript. If you need to enable JavaScript in a test, include in `js:  true`. 
