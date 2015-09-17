@@ -50,11 +50,10 @@ Remove duplicate phrasing and weak words like 'should'. For example, replace `it
 with `it "adds the item to the list" do`.
   
 ####File Stucture####
-  - It is nice to have files under 100 lines but the file size is lowest on priority over code being well tested
-  - All specs go in their spec type folders
-   * ie. Model, Feature ect.
-  - Feel free to make nested sub-folders for features.
-   * Ie. Subfolder for pending users, active users, deactivated users
+With the growing number of features being added to the Glassbreakers app, it can be difficult to keep track of where things are being tested. Here are some guidelines on where to place your code. 
+  - It is nice to have files under 100 lines but the file size is lowest on priority over code being well tested and being able to locate the specs for a peice of code.
+  - Place all specs in their spec type folders, ie. Model, Feature ect.
+  - Feel free to make nested sub-folders for features, ie. Subfolder for pending users, active users, deactivated users.
 
 ####Hound Issues####
 We use [Hound](https://github.com/thoughtbot/hound) to help keep our code clean and consistent. We are more flexible with hound issues on Spec tests with the highest priority on being clear of what is being tested. If a spec name is longer than 80 characters, see if there is a quick way to shorten the name without losing the meaning, if not don't let this hold you back and move on.  
@@ -90,19 +89,17 @@ Whenever possible we user Factory Girl over fixtures. There are a few cases that
 
 ####JavaScript####
 By default Capybara emulates a headless browser which is fast but does not run JavaScript. If you need to enable JavaScript in a test, include in `js:  true`. 
--'js: true' can be added to a describe block, context or single spec
-- It does take more time to run a JS enabled spec, only apply it to the smallest block possible. 
-- Ex: `it "tests using javascript" js:  true, do`
-[Capybara and JS](http://tutorials.jumpstartlab.com/topics/capybara/capybara_with_selenium_and_webkit.html)
+- 'js: true' can be added to a describe block, context or single spec.
+- It does take more time to run a JS enabled spec, so only apply it to the smallest block possible. 
+- [A good resource by Jumpstart Labs on Capybara and JS.](http://tutorials.jumpstartlab.com/topics/capybara/capybara_with_selenium_and_webkit.html)
 
 ####Reusing Code####
-Some test cases can take a lot of setup and be repetitive. These are great cases to reuse code in a test suite. Just remember the balance of saving lines of code and being able to quickly understand what is being test. 
-[reusing code] (http://testdrivenwebsites.com/2011/08/17/different-ways-of-code-reuse-in-rspec/)
+Some test cases can take a lot of setup and be repetitive. These are great cases to [reuse code] (http://testdrivenwebsites.com/2011/08/17/different-ways-of-code-reuse-in-rspec/)
+ in a test suite. Just remember the balance of saving lines of code and being able to quickly understand what is being test. 
 
 #####Shared examples#####
 
-[shared examples](https://www.relishapp.com/rspec/rspec-core/docs/example-groups/shared-examples)
-Shared examples allow us to execute the same group of expectations against several classes. Only use if there are more then 2 casese that could call them. If all of the calls to the shared example are in one file, place the shared example up top of that file, otherwise place in spec/support/examples. 
+[Shared examples](https://www.relishapp.com/rspec/rspec-core/docs/example-groups/shared-examples) allow us to execute the same group of expectations against several classes. Only use if there are more then 2 casese that could call them. If all of the calls to the shared example are in one file, place the shared example up top of that file, otherwise place in spec/support/examples. 
   
 #####Helper Methods#####
 
