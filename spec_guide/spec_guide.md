@@ -6,10 +6,10 @@ Fundamentals
 ####*At Glassbreakers we value a well tested app and take pride in our test suite.*####
 
 ####Coverage####
-Glassbreakers is a fast moving company that pushes code up frequently as we build out new features. The development team relies on a well tested app to have the confidence to push code to production without causing errors and/or negatively affecting a user's experience.
+Glassbreakers is a fast moving company that pushes code up frequently as we build out new features. The development team relies on a well tested app to have the confidence to push code to production without causing errors and/or negatively affecting a user's experience. We keep a close eye on Code Climate, which we use to monitor our testing coverage, and as of Sept 15th the Glassbreakers app has 97% coverage. 
 
-####Balance####
-Although it would be nice to have every edge case covered in our specs, our test suite should be there as a tool to help us write code productively and confidently and should not inhibit us from getting features out.
+####Balancing Act####
+Although it would be nice to have every edge case covered in our specs, our test suite should be there as a tool to help us write code productively and confidently and should not inhibit us from getting features out. It is easy to just throw on a bunch of tests push the test coverage up but don't actually test what matters most. Here at Glassbreakers we put thought into what matters most with our app and make sure out specs match accordingly. We also don't want to waste time writing specs that don't help and get out less features to improve the product. We use tools like Google Analytics to know the features/pages that Glassbreakers use most and place the highest priority there. 
 
   When deciding what to cover in your specs consider the following:
   - Black box, test what goes in and assert what comes out. Don't test private methods.
@@ -20,15 +20,19 @@ Although it would be nice to have every edge case covered in our specs, our test
     - A critical feature to proceed (cover as many as feasible)
     - A security risk (cover all cases)
 
-####Consistentancy####
-A consistent test suite is an outcome of a developer team that cares about the product, is able to work together and practices good communication.
-Bonuses of a consistent testsuite
-- Being able to easily navigate a codebase
-- Allows a developer to focus on the logic and not worry about about how to setup the tests
-- No need to spend time explaining why we did what we did.
+####Consistency####
+A consistent test suite is an outcome of a developer team that cares about the product, who is able to work together and that practices good communication.
+
+Bonuses of a consistent testsuite:
+- Easier debugging.
+- Being able to easily navigate a codebase.
+- Allows a developer to focus on the logic and not worry about about how to setup the tests.
+- No need to spend time explaining the why we did what we did.
 
 ####Best Judgement####
-These are best practices for going forward. If you are writing new specs or updating an existing spec, do your best to follow these guides unless you have good reason not to. We don't want to break what is already working so use your best judgement on what to update and what to leave alone for now. We as a team own this spec guide, so if you see something that is more than a one time exception, please open a pull request with the needed changes.  
+These are best practices for going forward. If you are writing new specs or updating an existing spec, do your best to follow these guides unless you have good reason not to. We don't want to break what is already working so use your best judgement on what to update and what to leave alone for now. We as a team own this spec guide, so if you see something that is more than a one time exception, don't hesitate to open a pull request!  
+
+Now get back to kicking ass and breaking glass and go write some awesome code! 
 
 High Level Spec Setup
 --------
@@ -44,8 +48,8 @@ Print out all the specs titles to include with your code review, all names shoul
 
 Remove duplicate phrasing and weak words like 'should'. 
 
-it "should add the item to the list" do - BAD
-it "add the item to the list" do - GOOD
+replace `it "should add the item to the list" do`
+with `it "adds the item to the list" do`
   
 ####File Stucture####
   - It is nice to have files under 100 lines but the file size is lowest on priority over code being well tested
@@ -55,7 +59,8 @@ it "add the item to the list" do - GOOD
    * Ie. Subfolder for pending users, active users, deactivated users
 
 ####Hound Issues####
-We are more flexible with hound issues on Spec tests with the highest priority being clear of what is being tested. If a spec name is longer than 80 characters, see if there is a quick way to shorten the name without losing the meaning, if not don't let this hold you back and move on.  
+We use [Hound](https://github.com/thoughtbot/hound) to help keep our code clean and consistent. We are more flexible with hound issues on Spec tests with the highest priority being clear of what is being tested. If a spec name is longer than 80 characters, see if there is a quick way to shorten the name without losing the meaning, if not don't let this hold you back and move on.  
+
 
 Spec Specifications 
 --------
@@ -73,7 +78,7 @@ The purpose of “describe” is to wrap a set of tests against one functionalit
  * User Features for tope level of Feature tests
 
 
-####before, let, instance variables####
+####Before, Let, and Instance variables####
  - Avoid instance variables: [why](http://stackoverflow.com/questions/5359558/when-to-use-rspec-let/5359979#5359979)
  - before eagerly runs code before each test.
  - let lazily runs code when it is first used which is better then automatically running unneeded logic.  
@@ -114,22 +119,25 @@ Spec types
 ####*Follow these as general guidelines in choosing what Specs to great. Always start high level (ie feature spec) and work from there.*####
 
 ###Feature Specs###
-Head with Feature `"User sends a message" do`
+[Example feature spec format](https://github.com/Glassbreakers/the_forge_handbook)
 
-High level tests that walk through entire application. Think of it as an actual user testing out the web interface. Only focus on what the user will see, do not test any logic in the feature tests that should be behind the scenes to the user. 
+Feature Specs are what drive the Glassbreakers testsuite. They are high level tests that walk through entire application. Think of it as an actual user testing out the web interface. Only focus on what the user will see, do not test any logic in the feature tests that should be behind the scenes to the user.
 
 ###Controller Specs###
+[Example controller spec format](https://github.com/Glassbreakers/the_forge_handbook)
+
 Most controller specs should be hit through the feature specs. Use your best judgement if additional controller specs are needed.  
 
 ###Mailer Specs##
+[Example mailer spec format](https://github.com/Glassbreakers/the_forge_handbook)
+
 Include a complete Mailer Spec for all mailers to ensure emails are being formatted correctly and have the correct user data. 
 
 ###Model/Unit/Services###
 -----
-Head with `Describe "User" do`
+[Example model spec format](https://github.com/Glassbreakers/the_forge_handbook)
+
 [Great talk by Sandi Metz] (https://www.youtube.com/watch?v=URSWYvyc42M)
-Narrow the focus down until the entire universe is a single object, that object is all the unit test knows about
--every cell works correctly
--thorough, stable, fast, and few
--test the interface, not the implementation (allows for refactoring)
-- Do not test private methods, they do not allow for refactoring. If you have a complicated private algorithm, this may require testing to get it running but should be segregated and noted that they can be deleted with refactoring. 
+
+The job for a model, unit or services spec is to test that each individual component is doing it's job correctly and narrow the focus down until the entire universe is a single object. That object is all the test knows about. 
+These tests should be thorough, stable, fast, and few. Test the interface, not the implementation to allow for refactoring. Do not test private methods as it will inhibit refactoring. If you have a complicated private algorithm, this may require testing to get it running but should be segregated and noted that the test can be deleted with refactoring. 
