@@ -59,7 +59,7 @@ with `it "adds the item to the list" do`
    * Ie. Subfolder for pending users, active users, deactivated users
 
 ####Hound Issues####
-We use [Hound](https://github.com/thoughtbot/hound) to help keep our code clean and consistent. We are more flexible with hound issues on Spec tests with the highest priority being clear of what is being tested. If a spec name is longer than 80 characters, see if there is a quick way to shorten the name without losing the meaning, if not don't let this hold you back and move on.  
+We use [Hound](https://github.com/thoughtbot/hound) to help keep our code clean and consistent. We are more flexible with hound issues on Spec tests with the highest priority on being clear of what is being tested. If a spec name is longer than 80 characters, see if there is a quick way to shorten the name without losing the meaning, if not don't let this hold you back and move on.  
 
 
 Spec Specifications 
