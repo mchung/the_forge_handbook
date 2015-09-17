@@ -36,7 +36,7 @@ Now get back to kicking ass and breaking glass and go write some awesome code!
 
 High Level Spec Setup
 --------
-###*These conventions are best practices across all spec types*###
+####*These conventions are best practices across all spec types*####
 
 ####Outside in Testing####
   * pattern for writing tests
