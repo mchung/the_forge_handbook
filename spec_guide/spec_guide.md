@@ -80,13 +80,13 @@ The purpose of “describe” is to wrap a set of tests against one functionalit
 
 ####Before, Let, and Instance variables####
  - Avoid instance variables: [why](http://stackoverflow.com/questions/5359558/when-to-use-rspec-let/5359979#5359979)
- - before eagerly runs code before each test.
- - let lazily runs code when it is first used which is better then automatically running unneeded logic.  
- - Make sure the lets aren't to distant so it is still readable easy to track what is going on.
+ - Using a `before` block eagerly runs code before each test. Be careful you aren't calling code that doesn't get used for every spec. 
+ - Using a `let` block lazily runs code when it is first used. This saves from automatically running unneeded logic.
+ - Make sure using a `before` or `let` block is really saving you time. It's great to DRY up code but if it takes a long time to trace back what a spec is doing, it may not be worth it. 
 
 ####Factory Girl and Fixtures####
 * [Factory Girl Gem] (https://github.com/thoughtbot/factory_girl)
-* [why factories are better than fixtures] (http://www.hiringthing.com/2012/08/17/rails-testing-factory-girl.html#sthash.h7s1sDju.dpuf)
+* [Why factories are better than fixtures] (http://www.hiringthing.com/2012/08/17/rails-testing-factory-girl.html#sthash.h7s1sDju.dpuf)
 
 At any time possible, use Factory girl and not fixtures. Factory Girl is reliable and requires little maintance. With Factory Girl, a model updates with your development as you merge in updates to your models.
 
