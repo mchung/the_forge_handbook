@@ -52,7 +52,7 @@ with `it "adds the item to the list" do`.
 ####File Stucture####
 With the growing number of features being added to the Glassbreakers app, it can be difficult to keep track of where things are being tested. Here are some guidelines on where to place your code.
   - It is nice to have files under 100 lines but the file size is lowest on priority over code being well tested and being able to locate the specs for a piece of code.
-  - Place all specs in their spec type folders, ie. Model, Feature ect.
+  - Place all specs in their spec type folders, ie. Model, Feature etc.
   - Feel free to make nested sub-folders for features, ie. Subfolder for pending users, active users, deactivated users.
 
 ####Hound Issues####
@@ -68,11 +68,11 @@ Spec Specifications
   * Act: on the object or method being tested
   * Assert: the expected results have occurred.
 
-####Describes, Features and Contexts... on my!####
+####Describes, Features and Contexts... oh my!####
 The purpose of “describe” is to wrap a set of tests against one functionality while “context” is to wrap a set of tests against one functionality under the same state.
  * Use Describe for things (top level and methods).
  * Use context for states.
- * User Features for tope level of Feature tests
+ * Use Features for top level of Feature tests
 
 
 ####Before, Let, and Instance variables####
