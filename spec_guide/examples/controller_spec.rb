@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe ToolsController do
-  describe "#create" do
+  describe "#POST create" do
     context "A glassbreaker with a valid toolbelt" do
       it "adds the tool to the toolbelt" do
         glassbreaker = create(:glassbreaker)
