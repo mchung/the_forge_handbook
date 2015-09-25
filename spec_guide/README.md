@@ -112,23 +112,23 @@ Spec types
 ####*Follow these as general guidelines in choosing what Specs to great. Always start high level (ie feature spec) and work from there.*####
 
 ###Feature Specs###
-[Example feature spec format](https://github.com/Glassbreakers/the_forge_handbook)
+[Example feature spec format](https://github.com/Glassbreakers/the_forge_handbook/blob/master/spec_guide/examples/feature_spec.rb)
 
 Feature Specs are what drive the Glassbreakers testsuite. They are high level tests that walk through entire application. Think of it as an actual user testing out the web interface. Only focus on what the user will see, do not test any logic in the feature tests that should be behind the scenes to the user.
 
 ###Controller Specs###
-[Example controller spec format](https://github.com/Glassbreakers/the_forge_handbook)
+[Example controller spec format](https://github.com/Glassbreakers/the_forge_handbook/blob/master/spec_guide/examples/controller_spec.rb)
 
 Most controller specs should be hit through the feature specs. Use your best judgement if additional controller specs are needed.  
 
 ###Mailer Specs##
-[Example mailer spec format](https://github.com/Glassbreakers/the_forge_handbook)
+[Example mailer spec format](https://github.com/Glassbreakers/the_forge_handbook/blob/master/spec_guide/examples/mailer_spec.rb)
 
 Include a complete Mailer Spec for all mailers to ensure emails are being formatted correctly and have the correct user data.
 
 ###Model/Unit/Services###
 -----
-[Example model spec format](https://github.com/Glassbreakers/the_forge_handbook)
+[Example model spec format](https://github.com/Glassbreakers/the_forge_handbook/blob/master/spec_guide/examples/model_spec.rb)
 
 [Great talk by Sandi Metz] (https://www.youtube.com/watch?v=URSWYvyc42M)
 
