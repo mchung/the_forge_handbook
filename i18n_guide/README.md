@@ -42,7 +42,7 @@ Each locale should contain individual translation files for various functionalit
 
 
 - **`features/`** - One file for each high-level feature of the application. These should contain translations that used only in these features. Translations used across multiple features should be in `shared/`
-- **`features/shared/`** - Contains translations for modules or functionality common to multiple features. For example, the “Submit” or “Loading…” label on a button is not feature-specific and might be used in various places across the app.
+- **`features/shared/`** - Contains translations for modules or functionality common to multiple features. For example, the "Submit" or "Loading…" label on a button is not feature-specific and might be used in various places across the app.
 - **`mailers/`** - One file for each mailer (which can contain multiple emails). Ideally, each file here should correspond to a file under `/app/mailers/*.rb`.
 
 
@@ -131,15 +131,15 @@ Use `enterprise` and `public` keys to specify the app type
 en:
   edit_profile:
     public:
-      heading: “My Public Heading”
+      heading: "My Public Heading"
     enterprise:
-      heading: “My Enterprise Heading”
+      heading: "My Enterprise Heading"
 ```
 
 These can be easily accessed in the view based on `app_type`:
 
 ``` ruby
-t(“edit_profile.#{app_type}.heading”)
+t("edit_profile.#{app_type}.heading")
 ```
 
 ### Using Anchor labels
@@ -154,17 +154,17 @@ en:
     common:
       subheading: &edit_profile_common
       body: &edit_profile_common_body
-        foo: “foo”
-        bar: “bar”
+        foo: "foo"
+        bar: "bar"
     public:
       <<: *edit_profile_common
-      heading: “My Public Heading”
+      heading: "My Public Heading"
     enterprise:
       <<: *edit_profile_common
-      heading: “My Enterprise Heading”
+      heading: "My Enterprise Heading"
       body:
         <<: *edit_profile_common_body
-        foo: “foo 2.0”
+        foo: "foo 2.0"
 ```
 
 In this example both the `public` and `enterprise` sections share a `common` set of translations that includes a `subheading` and some
@@ -183,17 +183,17 @@ The default i18n gem functionality makes it hard to format links and HTML in the
 ``` yml
 en:
   flash:
-    success: “Success! %{link:Read more} about it here”
-    fail: “Fail. Contact %{link:%{email}} to complain about it”
+    success: "Success! %{link:Read more} about it here"
+    fail: "Fail. Contact %{link:%{email}} to complain about it"
 ```
 
 Call the above as follows:
 
 ``` ruby
-csr_email = “foo@bar.com”
+csr_email = "foo@bar.com"
 
-It.it(“flash.success”, link: It.link(faq_path))
-It.it(“flash.fail”, link: It.link(“mailto:#{csr_email}”), email: csr_email)
+It.it("flash.success", link: It.link(faq_path))
+It.it("flash.fail", link: It.link("mailto:#{csr_email}"), email: csr_email)
 ```
 
 These bypass the usual `t(..)` translation call, so **use them only when you need a link**
